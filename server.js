@@ -8,6 +8,7 @@ import authRoutes from "./authRoutes.js"
 import bodyParser from "body-parser";
 import { postUser } from './postUsers.js';
 import { loginUser } from './loginUser.js';
+import { postProduct, getProducts, patchProductStatus } from "./products.js";
 //import { authenticateToken } from "./authMiddleware.js";
 
 
@@ -17,7 +18,7 @@ const app = express();
 // frontend connection
 app.use(cors({
   origin: 'http://localhost:5173', // or '*' to allow all origins
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST','PATCH'],
   credentials: true
 }));
 
@@ -35,6 +36,11 @@ app.post("/users", postUser);  // <--- using your function here
 
 // Login route
 app.post("/login", loginUser); // <--- using your function here
+
+// product routes
+app.post("/products", postProduct);
+app.get("/products", getProducts);
+app.patch("/products/:id/status", patchProductStatus);
 
 // routes
 app.use("/auth", authRoutes);
