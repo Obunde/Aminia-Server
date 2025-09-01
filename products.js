@@ -51,16 +51,16 @@ export const patchProductStatus = async (req, res) => {
   const { id } = req.params;
   const { status, userId } = req.body; // `userId` passed from frontend
 
-  console.log("Request body:", req.body); // 👈 logs the JSON payload
-  console.log("Params:", req.params); // 👈 logs the route params e.g. productId
-  console.log("Headers:", req.headers);
+  // console.log("Request body:", req.body); // 👈 logs the JSON payload
+  // console.log("Params:", req.params); // 👈 logs the route params e.g. productId
+  // console.log("Headers:", req.headers);
   try {
     const result = await pool.query(`SELECT * FROM products WHERE id=$1`, [id]);
     const product = result.rows[0];
 
     if (!product) return res.status(404).json({ error: "Product not found" });
-    console.log("Product row:", product);
-    console.log("User trying to update:", req.body.userId);
+    // console.log("Product row:", product);
+    // console.log("User trying to update:", req.body.userId);
 
     // Only participants can update
     if (
