@@ -24,7 +24,7 @@ const pool = new Pool({
 });
 // frontend connection
 app.use(cors({
-  origin: 'http://localhost:5173', // or '*' to allow all origins
+  origin: '*', // or '*' to allow all origins
   methods: ['GET', 'POST','PATCH'],
   credentials: true
 }));
