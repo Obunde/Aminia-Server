@@ -23,8 +23,20 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 // frontend connection
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://your-frontend-domain.com"
+];
+
 app.use(cors({
-  origin: '*', // or '*' to allow all origins
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, origin);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }, // or '*' to allow all origins
   methods: ['GET', 'POST','PATCH'],
   credentials: true
 }));
