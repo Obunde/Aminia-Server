@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import pkg from "pg";
 import cors from 'cors';
 import "./db.js"; 
 import authRoutes from "./authRoutes.js"
@@ -14,7 +15,13 @@ import { postProduct, getProducts, patchProductStatus } from "./products.js";
 
 
 const app = express();
+const {Pool} = pkg;
 
+
+const pool = new Pool({
+  connectionString: 'postgresql://postgres:rejCMfnVVnNkgEcrmSGRXwRZSonyCQFv@postgres.railway.internal:5432/railway',
+  ssl: { rejectUnauthorized: false }
+});
 // frontend connection
 app.use(cors({
   origin: 'http://localhost:5173', // or '*' to allow all origins
