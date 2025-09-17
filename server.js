@@ -26,7 +26,7 @@ const pool = new Pool({
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-frontend-domain.com"
+  "https://aminia-client.vercel.app"
 ];
 
 app.use(cors({
